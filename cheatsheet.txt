@@ -22,6 +22,13 @@ kubectl describe svc front-end -n production
 == Lab 5
 vi /HOT-k8s/manifests/sockshop-app/production/front-end.yml
 kubectl apply -f front-end.yml
+
+env:
+- name: DT_TAGS
+  value: "product=sockshop"
+- name: DT_CUSTOM_PROP
+  value: "SERVICE_TYPE=FRONTEND"
+
 cd /HOT-k8s/
 ./recycle-sockshop-frontend.sh
 
