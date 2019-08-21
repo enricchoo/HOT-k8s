@@ -14,13 +14,13 @@ cd HOT-k8s
 
 == Lab 4
 ./deploy-sockshop.sh
-vi /HOT-k8s/manifests/sockshop-app/production/front-end.yml
+vi ~/HOT-k8s/manifests/sockshop-app/production/front-end.yml
 kubectl create rolebinding serviceaccounts-view --clusterrole=view --	group=system:serviceaccounts:production --namespace=production
 kubectl create rolebinding serviceaccounts-view --clusterrole=view --	group=system:serviceaccounts:dev --namespace=dev
 kubectl describe svc front-end -n production
 
 == Lab 5
-vi /HOT-k8s/manifests/sockshop-app/production/front-end.yml
+vi ~/HOT-k8s/manifests/sockshop-app/production/front-end.yml
 
 env:
 - name: DT_TAGS
