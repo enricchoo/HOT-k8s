@@ -17,6 +17,8 @@ cd HOT-k8s
 vi ~/HOT-k8s/manifests/sockshop-app/production/front-end.yml
 kubectl create rolebinding serviceaccounts-view --clusterrole=view --	group=system:serviceaccounts:production --namespace=production
 kubectl create rolebinding serviceaccounts-view --clusterrole=view --	group=system:serviceaccounts:dev --namespace=dev
+./recycle-sockshop-frontend.sh
+
 kubectl describe svc front-end -n production
 
 == Lab 5
@@ -43,8 +45,17 @@ kubectl get pods -n production -o wide
 kubectl get deployments -n production -l tier=frontend
 
 == Troubleshooting
+- To check pods logs
 kubectl -n dynatrace logs -p [pod name]
+
+- To delete pods and cluster nodes
 kubectl -n dynatrace delete secret oneagent
 kubectl delete -n dynatrace oneagent --all
 kubectl delete -f https://raw.githubusercontent.com/Dynatrace/dynatrace-oneagent-operator/master/deploy/kubernetes.yaml
+kubectl delete --all pods --namespace=dynatrace
+gcloud container clusters delete performgo2019 --region=australia-southeast1-a
 kubectl delete -n production --all
+
+- To set project id into Cloud Shell
+gcloud config set project [your project id]
+
